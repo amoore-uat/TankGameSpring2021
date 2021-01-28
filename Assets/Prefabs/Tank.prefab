@@ -83,6 +83,36 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
+--- !u!1 &1034121473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1034121474}
+  m_Layer: 0
+  m_Name: Fire Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1034121474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1034121473}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.323, z: 1.001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7162169347328444514}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7162169347328414784
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,6 +205,7 @@ GameObject:
   - component: {fileID: 520432575}
   - component: {fileID: 520432576}
   - component: {fileID: 520432577}
+  - component: {fileID: 1058368864397012819}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -195,6 +226,7 @@ Transform:
   m_Children:
   - {fileID: 7162169347328444516}
   - {fileID: 963194228}
+  - {fileID: 1034121474}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -241,6 +273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac68f667793a0414f86c3659e13178c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firePoint: {fileID: 1034121473}
+  cannonBallPrefab: {fileID: 5079877096954489474, guid: ec9512631ea62934f85b4e6f4986e6bc,
+    type: 3}
 --- !u!114 &520432576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +302,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   turnSpeed: 115
+  cannonBallDamage: 1
+--- !u!114 &1058368864397012819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7162169347328414786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af03d41db1297742845e732a52fff72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 5
+  maxHealth: 5
 --- !u!1 &7162169347328414788
 GameObject:
   m_ObjectHideFlags: 0
