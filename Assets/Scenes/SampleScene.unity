@@ -163,7 +163,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &420195265
 PrefabInstance:
@@ -398,7 +398,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &864028617 stripped
 GameObject:
@@ -496,7 +496,7 @@ Transform:
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1591927302
 PrefabInstance:
@@ -548,7 +548,7 @@ PrefabInstance:
     - target: {fileID: 6999760639103937927, guid: e32e392b804b281468879f85f977aa21,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6999760639103937927, guid: e32e392b804b281468879f85f977aa21,
         type: 3}
@@ -692,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 5079877096954489478, guid: ec9512631ea62934f85b4e6f4986e6bc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5079877096954489478, guid: ec9512631ea62934f85b4e6f4986e6bc,
         type: 3}
@@ -798,5 +798,10 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[2]
       value: 
       objectReference: {fileID: 1759175347}
+    - target: {fileID: 2464109769084728415, guid: a1008e97960a6dd4cb03f28551a2fa42,
+        type: 3}
+      propertyPath: loopType
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1008e97960a6dd4cb03f28551a2fa42, type: 3}

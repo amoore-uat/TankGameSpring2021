@@ -29,7 +29,6 @@ public class TankMotor : MonoBehaviour
         // Call SimpleMove() and send it our vector
         // Note that SimpleMove() will apply Time.deltaTime, and convert to meters per second for us!
         characterController.SimpleMove(speedVector);
-
     }
 
     public void Rotate(float rotateSpeed)
@@ -47,7 +46,9 @@ public class TankMotor : MonoBehaviour
 
     public bool RotateTowards(Vector3 target, float rotateSpeed)
     {
-        Vector3 vectorToTarget = target - transform.position;
+        Vector3 adjustedTarget = new Vector3(target.x, transform.position.y, target.z);
+        Vector3 vectorToTarget = adjustedTarget - transform.position;
+        
         Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget);
 
         if (targetRotation == transform.rotation)
