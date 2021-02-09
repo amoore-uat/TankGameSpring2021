@@ -23,6 +23,14 @@ public class SampleAIController1 : MonoBehaviour
 
     private bool isLoopingForward = true;
 
+    public bool IsNotAtFinalWaypointProperty
+    {
+        get
+        {
+            return currentWaypoint < (waypoints.Length - 1);
+        }
+    }
+
 
     void Start()
     {
@@ -50,7 +58,7 @@ public class SampleAIController1 : MonoBehaviour
         {
             if (Vector3.SqrMagnitude(transform.position - waypoints[currentWaypoint].transform.position) <= (closeEnough * closeEnough))
             {
-                if (IsNotAtFinalWaypoint())
+                if (IsNotAtFinalWaypointProperty)
                 {
                     currentWaypoint++;
                 }
