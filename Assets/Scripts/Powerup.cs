@@ -18,7 +18,7 @@ public class Powerup
         targetData.moveSpeed += speedModifier;
         targetData.fireRate += fireRateModifier;
         targetHealth.maxHealth += maxHealthModifier;
-        targetHealth.currentHealth += healthModifier;
+        targetHealth.CurrentHealth += healthModifier;
 
     }
 
@@ -29,6 +29,6 @@ public class Powerup
         // If you set Health up as a non-monobehavior class
         //target.tankHealth.maxHealth -= maxHealthModifier;
         targetHealth.maxHealth -= maxHealthModifier;
-        targetHealth.currentHealth -= healthModifier;
+        targetHealth.CurrentHealth -= healthModifier;
     }
 }

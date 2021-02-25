@@ -5,7 +5,23 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public int currentHealth = 5;
+    private int currentHealth = 3;
+    public int CurrentHealth
+    {
+        get { return currentHealth; }
+        set
+        {
+            currentHealth = value;
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+        }
+    }
     public int maxHealth = 5;
 
     public void TakeDamage(Attack attackData)

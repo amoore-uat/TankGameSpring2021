@@ -22,6 +22,8 @@ public class PowerupController : MonoBehaviour
         {
             powerups.Add(powerup);
         }
+        // Used to prove that current health can't go above max health.
+        // Debug.Log(health.CurrentHealth);
     }
 
     void Update()
