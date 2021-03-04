@@ -11,6 +11,15 @@ public class TrackHealthPowerups : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.Instance.healthPowerups.Remove(this.gameObject);
+        // Guardian clause - don't try to access the game manager if it's null
+        if (GameManager.Instance == null)
+        {
+            return;
+        }
+        // Only remove this from the list if it's inside the list.
+        if (GameManager.Instance.healthPowerups.Contains(this.gameObject))
+        {
+            GameManager.Instance.healthPowerups.Remove(this.gameObject);
+        }
     }
 }

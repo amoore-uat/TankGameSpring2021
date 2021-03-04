@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class MapGenerator : MonoBehaviour
     public int rows;
     public int columns;
 
+    public int mapSeed;
+
     private float roomWidth = 50f;
     private float roomHeight = 50f;
 
@@ -14,18 +17,35 @@ public class MapGenerator : MonoBehaviour
 
     private Room[,] grid;
 
+    public enum MapGenerationType { Random, MapOfTheDay, CustomSeed };
+    public MapGenerationType mapType = MapGenerationType.Random;
+
     private void Start()
     {
         GenerateGrid();
+        GameManager.Instance.SpawnEnemies(4);
     }
 
     public GameObject RandomRoomPrefab()
     {
-        return gridPrefabs[Random.Range(0, gridPrefabs.Length)];
+        return gridPrefabs[UnityEngine.Random.Range(0, gridPrefabs.Length)];
     }
 
     public void GenerateGrid()
     {
+        switch (mapType)
+        {
+            case MapGenerationType.Random:
+                mapSeed = DateToInt(DateTime.Now);
+                break;
+            case MapGenerationType.MapOfTheDay:
+                mapSeed = DateToInt(DateTime.Now.Date);
+                break;
+            case MapGenerationType.CustomSeed:
+                // Don't change the seed.
+                break;
+        }
+        UnityEngine.Random.InitState(mapSeed);
         // Clear out the grid - "which column" is our X, "which row" is our Y
         grid = new Room[columns, rows];
 
@@ -54,21 +74,15 @@ public class MapGenerator : MonoBehaviour
                 }
                 // TODO: Fix the East and West doors below.
                 // If we are on the first column, open the east door
-                if (row == 0)
+                if (column != columns-1)
                 {
                     currentRoom.doorEast.SetActive(false);
                 }
-                else if (column == columns - 1)
+                if (column != 0)
                 {
-                    // Otherwise, if we are on the last column row, open the west door
                     currentRoom.doorWest.SetActive(false);
                 }
-                else
-                {
-                    // Otherwise, we are in the middle, so open both doors
-                    currentRoom.doorEast.SetActive(false);
-                    currentRoom.doorWest.SetActive(false);
-                }
+
 
                 grid[column, row] = currentRoom;
                 
@@ -80,4 +94,10 @@ public class MapGenerator : MonoBehaviour
             }
         }
     }
+    public int DateToInt(DateTime dateToUse)
+    {
+        // Add our date up and return it
+        return dateToUse.Year + dateToUse.Month + dateToUse.Day + dateToUse.Hour + dateToUse.Minute + dateToUse.Second + dateToUse.Millisecond;
+    }
+
 }
