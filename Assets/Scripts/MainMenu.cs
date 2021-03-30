@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject optionsMenu;
 
+    public Slider musicSlider;
+    public Slider sfxSlider;
+    public Dropdown mapDropdown;
+
     public enum MenuState { mainMenu, optionsMenu };
     public MenuState currentMenuState = MenuState.mainMenu;
 
@@ -37,7 +41,8 @@ public class MainMenu : MonoBehaviour
 
     public void OnSaveChangesClicked()
     {
-        // TODO: Save options
+        // Save options
+        GameManager.Instance.SavePreferences();
 
         // Go back to main menu
         GoToMainFromOptions();
@@ -52,9 +57,25 @@ public class MainMenu : MonoBehaviour
 
     public void OnClickedBackInOptions()
     {
-        // TODO: Revert options
+        // Revert options
+        GameManager.Instance.LoadPreferences();
 
         // Go back to main menu
         GoToMainFromOptions();
+    }
+    
+    public void OnChangeMusicVolume()
+    {
+        GameManager.Instance.musicVolume = musicSlider.value;
+    }
+
+    public void OnChangeSfxVolume()
+    {
+        GameManager.Instance.sfxVolume = sfxSlider.value;
+    }
+
+    public void OnChangeMapType()
+    {
+        GameManager.Instance.mapType = (GameManager.MapGenerationType)mapDropdown.value;
     }
 }
