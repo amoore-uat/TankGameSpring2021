@@ -10,7 +10,15 @@ public class CannonBall : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Attack attackData = new Attack(attacker, attackDamage);
-        collision.gameObject.SendMessage("TakeDamage", attackData, SendMessageOptions.DontRequireReceiver);
+
+        IAttackable[] attackables = collision.gameObject.GetComponents<IAttackable>();
+
+        foreach (IAttackable attackable in attackables)
+        {
+            attackable.OnAttacked(attackData);
+        }
+
+        //collision.gameObject.SendMessage("TakeDamage", attackData, SendMessageOptions.DontRequireReceiver);
 
         // Destroy our cannonball when it runs into another object.
         Destroy(this.gameObject);

@@ -15,7 +15,10 @@ public class GameManager : Singleton<GameManager>
 
     public List<EnemySpawnPoints> enemySpawnPoints = new List<EnemySpawnPoints>();
 
-    public int playerScore = 0;
+    public int oldPlayerScore = 0;
+
+    public List<ScoreData> HighScoreTable;
+
 
     public enum MapGenerationType { Random, MapOfTheDay, CustomSeed };
     public MapGenerationType mapType = MapGenerationType.Random;
@@ -81,5 +84,20 @@ public class GameManager : Singleton<GameManager>
         {
             mapType = MapGenerationType.Random;
         }
+    }
+
+    public void UpdateHighScoreTable(ScoreData newScore)
+    {
+        // Add the new score to the table.
+        HighScoreTable.Add(newScore);
+
+        // Sort the table.
+        HighScoreTable.Sort();
+
+        // Flip the table upside-down.
+        HighScoreTable.Reverse();
+
+        // Trim the scores that are too low.
+        HighScoreTable = HighScoreTable.GetRange(0, 3);
     }
 }
