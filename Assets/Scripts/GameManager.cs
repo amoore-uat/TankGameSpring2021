@@ -19,6 +19,8 @@ public class GameManager : Singleton<GameManager>
 
     public List<ScoreData> HighScoreTable;
 
+    public bool isMultiplayer;
+
 
     public enum MapGenerationType { Random, MapOfTheDay, CustomSeed };
     public MapGenerationType mapType = MapGenerationType.Random;
@@ -34,7 +36,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        SceneManager.LoadScene(1);
+        // SceneManager.LoadScene(1);
     }
 
     public void SpawnEnemies(int numberToSpawn)

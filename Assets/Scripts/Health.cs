@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
             currentHealth = value;
             if (currentHealth <= 0)
             {
-                Die();
+                // Die(attackData);
             }
             if (currentHealth > maxHealth)
             {
@@ -31,12 +31,17 @@ public class Health : MonoBehaviour
         // check to see if we died
         if (currentHealth <= 0)
         {
-            Die();
+            Die(attackData);
         }
     }
 
-    private void Die()
+    private void Die(Attack attackData)
     {
-        throw new NotImplementedException();
+        IKillable[] killables = GetComponents<IKillable>();
+
+        foreach (IKillable killable in killables)
+        {
+            killable.OnKilled(attackData);
+        }
     }
 }

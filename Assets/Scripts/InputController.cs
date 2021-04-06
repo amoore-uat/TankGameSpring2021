@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(TankData))]
 [RequireComponent(typeof(TankMotor))]
 [RequireComponent(typeof(TankShooter))]
-public class InputController : MonoBehaviour
+public class InputController : MonoBehaviour, IKillable
 {
     private TankData data;
     private TankMotor motor;
@@ -20,6 +20,15 @@ public class InputController : MonoBehaviour
         data = GetComponent<TankData>();
         motor = GetComponent<TankMotor>();
         shooter = GetComponent<TankShooter>();
+
+        if (this.gameObject == GameManager.Instance.Players[0])
+        {
+            inputScheme = InputScheme.WASD;
+        }
+        else
+        {
+            inputScheme = InputScheme.arrowKeys;
+        }
     }
 
     // Update is called once per frame
@@ -67,5 +76,11 @@ public class InputController : MonoBehaviour
         }
             
 
+    }
+
+    public void OnKilled(Attack attackData)
+    {
+        // disable input on player death
+        this.enabled = false;
     }
 }
