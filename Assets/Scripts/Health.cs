@@ -58,19 +58,19 @@ public class Health : MonoBehaviour
         }
         else
         {
-            if (data.lives <= 0)
+            if (GameManager.Instance.Players[0].GetComponent<TankData>().lives <= 0)
             {
                 GameManager.Instance.GameOver();
             }
         }
-        
+
         IKillable[] killables = GetComponentsInChildren<IKillable>();
 
         foreach (IKillable killable in killables)
         {
             killable.OnKilled(attackData);
         }
-        if (data.lives > 0)
+        if (data.lives > 0 || (HasAIController()))
         {
 
             IRespawnable[] respawnables = GetComponentsInChildren<IRespawnable>();
@@ -80,5 +80,10 @@ public class Health : MonoBehaviour
                 respawnable.OnRespawn();
             }
         }
+    }
+
+    private bool HasAIController()
+    {
+        return this.gameObject.GetComponent<SampleAIController1>() != null;
     }
 }
