@@ -7,7 +7,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     private TankData data;
-    private int currentHealth = 3;
+    [SerializeField] private int currentHealth = 3;
     public int CurrentHealth
     {
         get { return currentHealth; }
