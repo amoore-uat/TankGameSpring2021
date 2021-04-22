@@ -31,4 +31,32 @@ public class EnemySpawnPoints : MonoBehaviour
         // Example of how you could set personality randomly at spawn time.
         // spawnedEnemy.AIController.Personality = PersonalityType.Cowardly;
     }
+
+    public void SpawnEnemy(int enemyToSpawn)
+    {
+        GameObject prefabToSpawn = GameManager.Instance.EnemyAIPrefabs[Random.Range(0, GameManager.Instance.EnemyAIPrefabs.Length)];
+        GameObject spawnedEnemy = Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+        if (spawnedEnemy == null)
+        {
+            return;
+        }
+        SampleFSM FSMtoSet = spawnedEnemy.GetComponent<SampleFSM>();
+
+        if (FSMtoSet != null)
+        {
+            if (enemyToSpawn == 0)
+            {
+                FSMtoSet.personality = SampleFSM.EnemyPersonality.Cowardly;
+            }
+            else if (enemyToSpawn == 1)
+            {
+                FSMtoSet.personality = SampleFSM.EnemyPersonality.Guard;
+            }
+            else
+            {
+                Debug.Log("There are only two personalities");
+                FSMtoSet.personality = SampleFSM.EnemyPersonality.Cowardly;
+            }
+        }
+    }
 }
